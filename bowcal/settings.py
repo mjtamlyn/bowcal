@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = (
     'registration',
+    'tournaments',
     'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,6 +72,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Templates
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
 
 
 # Apps
