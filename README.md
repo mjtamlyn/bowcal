@@ -13,6 +13,7 @@ You will need:
 - Git
 
 Instructions:
+
 1. Clone the repository `git clone git@github.com:mjtamlyn/squads.git`
 2. Create a virtual environment `virtualenv bowcal`
 3. Install the requirements `pip install -r requirements.txt`
