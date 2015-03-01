@@ -1,6 +1,8 @@
+from django.core.urlresolvers import reverse_lazy
 from django.utils import timezone
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, CreateView
 
+from .forms import TournamentSubmissionForm
 from .models import Tournament
 
 
@@ -9,7 +11,8 @@ class TournamentList(TemplateView):
 
     def get_tournaments(self):
         return Tournament.objects.filter(
-            end_date__gte=timezone.now().date
+            end_date__gte=timezone.now().date,
+            approved=True,
         ).select_related(
             'organising_club',
             'organising_county',
@@ -23,3 +26,9 @@ class TournamentList(TemplateView):
         return {
             'tournaments': self.get_tournaments(),
         }
+
+
+class TournamentSubmit(CreateView):
+    template_name = 'tournaments/tournament_submit.html'
+    form_class = TournamentSubmissionForm
+    success_url = reverse_lazy('tournament-list')

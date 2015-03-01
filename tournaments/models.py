@@ -105,7 +105,10 @@ class Tournament(models.Model):
     status = models.CharField(max_length=31, choices=STATUS_CHOICES)
     shoot_type = models.CharField(max_length=1, choices=ARCHERY_TYPES)
     record_status = models.CharField(max_length=7, choices=RECORD_STATUSES)
-    rounds = models.ManyToManyField(Round)
+    rounds = models.ManyToManyField(Round, blank=True)
+
+    approved = models.BooleanField(default=False)
+    submission_notes = models.TextField(blank=True, default='')
 
     def __str__(self):
         return self.name
