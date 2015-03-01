@@ -8,7 +8,7 @@ ARCHERY_TYPES = (
     ('C', 'Clout'),
     ('W', 'Wand'),
     ('L', 'Flight'),
-    ('O', 'Other'),
+    ('H', 'Other'),
     ('M', 'Mixed'),
 )
 
@@ -97,3 +97,11 @@ class Tournament(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def organiser(self):
+        return self.organising_club or self.organising_county
+
+    @property
+    def has_record_status(self):
+        return not self.record_status == 'None'

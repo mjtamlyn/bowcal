@@ -3,9 +3,35 @@
 
 {% block content %}
 <h1>Tournament list</h1>
-<ul>
+<table>
+    <thead>
+        <tr>
+            <th>Discipline</th>
+            <th>Tournament</th>
+            <th>Date(s)</th>
+            <th>Organiser</th>
+            <th>Round(s)</th>
+            <th>Status</th>
+        </tr>
+    </thead>
     {% for tournament in tournaments %}
-    <li>{{ tournament }}</li>
+    <tr>
+        <td>{{ tournament.get_shoot_type_display }}</td>
+        <td>{{ tournament.name }}</td>
+        <td>{{ tournament.start_date }}{% if not tournament.start_date == tournament.end_date %} to {{ tournament.end_date }}{% endif %}</td>
+        <td>{{ tournament.organiser }}</td>
+        <td>
+            {% if tournament.has_record_status %}
+            <span class="status">{{ tournament.get_record_status_display }}</span>
+            {% endif %}
+            <ul>
+                {% for round in tournament.rounds.all %}
+                <li>{{ round }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+        <td>{{ tournament.get_status_display }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
 {% endblock %}
