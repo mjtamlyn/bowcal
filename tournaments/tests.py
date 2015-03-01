@@ -1,3 +1,11 @@
-from django.test import TestCase
+from django.core.urlresolvers import reverse
 
-# Create your tests here.
+import pytest
+
+
+@pytest.mark.django_db
+class TestTournamentList:
+    def test_simple(self, client):
+        url = reverse('tournament-list')
+        response = client.get(url)
+        assert response.status_code == 200
