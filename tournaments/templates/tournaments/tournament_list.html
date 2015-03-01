@@ -11,6 +11,7 @@
             <th>Date(s)</th>
             <th>Organiser</th>
             <th>Round(s)</th>
+            <th>Venue</th>
             <th>Status</th>
         </tr>
     </thead>
@@ -30,6 +31,7 @@
                 {% endfor %}
             </ul>
         </td>
+        <td>{% if tournament.venue %}{{ tournament.venue }}{% endif %}</td>
         <td>{{ tournament.get_status_display }}</td>
     </tr>
     {% endfor %}

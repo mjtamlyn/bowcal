@@ -60,6 +60,20 @@ class Series(models.Model):
         verbose_name_plural = 'series'
 
 
+class Venue(models.Model):
+    name = models.CharField(max_length=255)
+    address_1 = models.CharField(max_length=255)
+    address_2 = models.CharField(max_length=255, blank=True, default='')
+    town = models.CharField(max_length=255, blank=True, default='')
+    postcode = models.CharField(max_length=255, blank=True, default='')
+
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Tournament(models.Model):
     RECORD_STATUSES = (
         ('None', 'No record status'),
@@ -86,14 +100,12 @@ class Tournament(models.Model):
     organising_club = models.ForeignKey(Club, blank=True, null=True)
     organising_county = models.ForeignKey(County, blank=True, null=True)
     series = models.ForeignKey(Series, blank=True, null=True)
+    venue = models.ForeignKey(Venue, blank=True, null=True)
 
     status = models.CharField(max_length=31, choices=STATUS_CHOICES)
     shoot_type = models.CharField(max_length=1, choices=ARCHERY_TYPES)
     record_status = models.CharField(max_length=7, choices=RECORD_STATUSES)
     rounds = models.ManyToManyField(Round)
-
-    latitude = models.FloatField(blank=True, null=True)
-    longitude = models.FloatField(blank=True, null=True)
 
     def __str__(self):
         return self.name

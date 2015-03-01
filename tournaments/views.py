@@ -13,6 +13,7 @@ class TournamentList(TemplateView):
         ).select_related(
             'organising_club',
             'organising_county',
+            'venue',
         ).prefetch_related('rounds').order_by(
             'start_date',
             'end_date',
