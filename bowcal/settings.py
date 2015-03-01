@@ -34,6 +34,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'registration',
     'tournaments',
+
+    'debug_toolbar',
+
     'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
