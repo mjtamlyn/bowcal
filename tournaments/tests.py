@@ -43,3 +43,20 @@ class TestTournamentSubmit:
         response = client.post(url, data)
         assert_valid_form_submit(response)
         assert Tournament.objects.count() == 1
+        tournament = Tournament.objects.get()
+        assert tournament.name == data['name']
+
+    def test_without_end_date(self, client):
+        url = reverse('tournament-submit')
+        data = {
+            'name': 'foo',
+            'shoot_type': 'I',
+            'record_status': 'None',
+            'start_date': '2015-01-01',
+            'multi_day_shoot': False,
+        }
+        response = client.post(url, data)
+        assert_valid_form_submit(response)
+        assert Tournament.objects.count() == 1
+        tournament = Tournament.objects.get()
+        assert tournament.start_date == tournament.end_date
