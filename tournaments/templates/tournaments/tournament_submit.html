@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 
 {% block content %}
 <h1>Submit tournament</h1>
 <form method="POST" action="{{ request.get_full_path }}">
     {% csrf_token %}
-    <ul>
-        {{ form.as_ul }}
-        <li><input type="submit"></li>
-    </ul>
+    {{ form|crispy }}
+    <div class="ctrl-holder">
+        <input type="submit" class="btn btn-success">
+    </div>
 </form>
 {% endblock %}

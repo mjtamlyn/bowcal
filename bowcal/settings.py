@@ -35,6 +35,8 @@ INSTALLED_APPS = (
     'registration',
     'tournaments',
 
+    'crispy_forms',
+
     'django.contrib.admin.apps.AdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,3 +87,5 @@ TEMPLATE_DIRS = (
 
 # Apps
 AUTH_USER_MODEL = 'registration.User'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
